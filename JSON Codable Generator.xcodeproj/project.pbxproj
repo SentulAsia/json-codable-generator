@@ -13,6 +13,8 @@
 		B82AB3792241E8C400AB6C3A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B82AB3772241E8C400AB6C3A /* Main.storyboard */; };
 		B82AB3852241E8C400AB6C3A /* JSON_Codable_GeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82AB3842241E8C400AB6C3A /* JSON_Codable_GeneratorTests.swift */; };
 		B82AB3902241E8C400AB6C3A /* JSON_Codable_GeneratorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82AB38F2241E8C400AB6C3A /* JSON_Codable_GeneratorUITests.swift */; };
+		B83FDCC522420FA400289780 /* PrefsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83FDCC422420FA400289780 /* PrefsViewController.swift */; };
+		B8C6E0F022423F6F00E45BC3 /* CodableGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C6E0EF22423F6F00E45BC3 /* CodableGenerator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,13 +41,15 @@
 		B82AB3752241E8C400AB6C3A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B82AB3782241E8C400AB6C3A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B82AB37A2241E8C400AB6C3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B82AB37B2241E8C400AB6C3A /* JSON_Codable_Generator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JSON_Codable_Generator.entitlements; sourceTree = "<group>"; };
 		B82AB3802241E8C400AB6C3A /* JSON Codable GeneratorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "JSON Codable GeneratorTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B82AB3842241E8C400AB6C3A /* JSON_Codable_GeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON_Codable_GeneratorTests.swift; sourceTree = "<group>"; };
 		B82AB3862241E8C400AB6C3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B82AB38B2241E8C400AB6C3A /* JSON Codable GeneratorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "JSON Codable GeneratorUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B82AB38F2241E8C400AB6C3A /* JSON_Codable_GeneratorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON_Codable_GeneratorUITests.swift; sourceTree = "<group>"; };
 		B82AB3912241E8C400AB6C3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B83FDCC422420FA400289780 /* PrefsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefsViewController.swift; sourceTree = "<group>"; };
+		B8C6E0EF22423F6F00E45BC3 /* CodableGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableGenerator.swift; sourceTree = "<group>"; };
+		B8C6E0F22242A2E400E45BC3 /* JSON_Codable_Generator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JSON_Codable_Generator.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,12 +100,10 @@
 		B82AB3702241E8C200AB6C3A /* JSON Codable Generator */ = {
 			isa = PBXGroup;
 			children = (
-				B82AB3712241E8C200AB6C3A /* AppDelegate.swift */,
-				B82AB3732241E8C200AB6C3A /* ViewController.swift */,
-				B82AB3752241E8C400AB6C3A /* Assets.xcassets */,
-				B82AB3772241E8C400AB6C3A /* Main.storyboard */,
-				B82AB37A2241E8C400AB6C3A /* Info.plist */,
-				B82AB37B2241E8C400AB6C3A /* JSON_Codable_Generator.entitlements */,
+				B8C6E0ED224233FD00E45BC3 /* Controller */,
+				B8C6E0EE2242341F00E45BC3 /* View */,
+				B8C6E0F122423F7500E45BC3 /* Helper */,
+				B8C6E0EC224233A800E45BC3 /* Supporting Files */,
 			);
 			path = "JSON Codable Generator";
 			sourceTree = "<group>";
@@ -122,6 +124,42 @@
 				B82AB3912241E8C400AB6C3A /* Info.plist */,
 			);
 			path = "JSON Codable GeneratorUITests";
+			sourceTree = "<group>";
+		};
+		B8C6E0EC224233A800E45BC3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B82AB3712241E8C200AB6C3A /* AppDelegate.swift */,
+				B82AB3752241E8C400AB6C3A /* Assets.xcassets */,
+				B82AB37A2241E8C400AB6C3A /* Info.plist */,
+				B8C6E0F22242A2E400E45BC3 /* JSON_Codable_Generator.entitlements */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B8C6E0ED224233FD00E45BC3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B82AB3732241E8C200AB6C3A /* ViewController.swift */,
+				B83FDCC422420FA400289780 /* PrefsViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B8C6E0EE2242341F00E45BC3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B82AB3772241E8C400AB6C3A /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B8C6E0F122423F7500E45BC3 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				B8C6E0EF22423F6F00E45BC3 /* CodableGenerator.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -192,6 +230,14 @@
 				TargetAttributes = {
 					B82AB36D2241E8C200AB6C3A = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.HardenedRuntime = {
+								enabled = 1;
+							};
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 					B82AB37F2241E8C400AB6C3A = {
 						CreatedOnToolsVersion = 10.1;
@@ -255,6 +301,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B82AB3742241E8C200AB6C3A /* ViewController.swift in Sources */,
+				B83FDCC522420FA400289780 /* PrefsViewController.swift in Sources */,
+				B8C6E0F022423F6F00E45BC3 /* CodableGenerator.swift in Sources */,
 				B82AB3722241E8C200AB6C3A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -421,11 +469,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "JSON Codable Generator/JSON_Codable_Generator.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "JSON Codable Generator/Supporting Files/JSON_Codable_Generator.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = C8C5YY57VR;
-				INFOPLIST_FILE = "JSON Codable Generator/Info.plist";
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = "JSON Codable Generator/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -440,11 +489,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "JSON Codable Generator/JSON_Codable_Generator.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "JSON Codable Generator/Supporting Files/JSON_Codable_Generator.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = C8C5YY57VR;
-				INFOPLIST_FILE = "JSON Codable Generator/Info.plist";
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = "JSON Codable Generator/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
