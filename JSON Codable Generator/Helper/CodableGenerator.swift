@@ -6,7 +6,7 @@
 //  Copyright © 2019 Zaid Said. All rights reserved.
 //
 
-import Foundation
+import Cocoa
 
 struct CodableGenerator {
     
@@ -92,7 +92,7 @@ private extension CodableGenerator {
         } else if let _ = input.value as? [Int] {
             output += "    let " + name + ": [Int]?\n"
         } else if let stringArray = input.value as? [String] {
-            if let _ = URL(string: stringArray.first!) {
+            if let url = URL(string: stringArray.first!), let _ = try? url.checkResourceIsReachable() {
                 output += "    let " + name + ": [URL]?\n"
             } else {
                 output += "    let " + name + ": [String]?\n"
@@ -105,7 +105,7 @@ private extension CodableGenerator {
         } else if let _ = input.value as? Int {
             output += "    let " + name + ": Int?\n"
         } else if let string = input.value as? String {
-            if let _ = URL(string: string) {
+            if let url = URL(string: string), let _ = try? url.checkResourceIsReachable() {
                 output += "    let " + name + ": URL?\n"
             } else {
                 output += "    let " + name + ": String?\n"
@@ -172,7 +172,7 @@ private extension CodableGenerator {
             output += "            }\n"
             output += "        }\n"
         } else if let stringArray = input.value as? [String] {
-            if let _ = URL(string: stringArray.first!) {
+            if let url = URL(string: stringArray.first!), let _ = try? url.checkResourceIsReachable() {
                 output += "        " + name + " = [URL]()\n"
                 output += "        if let " + name + "Array = dictionary[keys." + name + ".rawValue] as? [String] {\n"
                 output += "            for dic in " + name + "Array {\n"
@@ -200,7 +200,7 @@ private extension CodableGenerator {
         } else if let _ = input.value as? Int {
             output += "        " + name + " = dictionary[keys." + name + ".rawValue] as? Int\n"
         } else if let string = input.value as? String {
-            if let _ = URL(string: string) {
+            if let url = URL(string: string), let _ = try? url.checkResourceIsReachable() {
                 output += "        " + name + " = dictionary[keys." + name + ".rawValue] as? URL\n"
             } else {
                 output += "        " + name + " = dictionary[keys." + name + ".rawValue] as? String\n"
@@ -229,7 +229,7 @@ private extension CodableGenerator {
         } else if let _ = input.value as? [Int] {
             output += "        " + name + " = try values.decodeIfPresent([Int].self, forKey: ." + name + ")\n"
         } else if let stringArray = input.value as? [String] {
-            if let _ = URL(string: stringArray.first!) {
+            if let url = URL(string: stringArray.first!), let _ = try? url.checkResourceIsReachable() {
                 output += "        " + name + " = try values.decodeIfPresent([URL].self, forKey: ." + name + ")\n"
             } else {
                 output += "        " + name + " = try values.decodeIfPresent([String].self, forKey: ." + name + ")\n"
@@ -241,7 +241,7 @@ private extension CodableGenerator {
         } else if let _ = input.value as? Int {
             output += "        " + name + " = try values.decodeIfPresent(Int.self, forKey: ." + name + ")\n"
         } else if let string = input.value as? String {
-            if let _ = URL(string: string) {
+            if let url = URL(string: string), let _ = try? url.checkResourceIsReachable() {
                 output += "        " + name + " = try values.decodeIfPresent(URL.self, forKey: ." + name + ")\n"
             } else {
                 output += "        " + name + " = try values.decodeIfPresent(String.self, forKey: ." + name + ")\n"
