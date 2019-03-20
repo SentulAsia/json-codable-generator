@@ -154,9 +154,7 @@ private extension CodableGenerator {
             output += "        " + name + " = [" + generateCodableName(fromString: input.key) + "]()\n"
             output += "        if let " + name + "Array = dictionary[keys." + name + ".rawValue] as? [[String: Any]] {\n"
             output += "            for dic in " + name + "Array {\n"
-            output += "                if let value = " + generateCodableName(fromString: input.key) + "(from: dic) {\n"
-            output += "                    " + name + ".append(value)\n"
-            output += "                }\n"
+            output += "                " + name + "?.append(" + generateCodableName(fromString: input.key) + "(from: dic))\n"
             output += "            }\n"
             output += "        }\n"
         } else if let _ = input.value as? [Double] {
