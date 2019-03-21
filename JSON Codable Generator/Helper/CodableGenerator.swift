@@ -6,7 +6,7 @@
 //  Copyright © 2019 Zaid Said. All rights reserved.
 //
 
-import Cocoa
+import Foundation
 
 struct CodableGenerator {
     
