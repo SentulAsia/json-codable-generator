@@ -230,6 +230,7 @@
 				TargetAttributes = {
 					B82AB36D2241E8C200AB6C3A = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						SystemCapabilities = {
 							com.apple.HardenedRuntime = {
 								enabled = 1;
@@ -241,10 +242,12 @@
 					};
 					B82AB37F2241E8C400AB6C3A = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = B82AB36D2241E8C200AB6C3A;
 					};
 					B82AB38A2241E8C400AB6C3A = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = B82AB36D2241E8C200AB6C3A;
 					};
 				};
@@ -481,7 +484,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sentulasia.JSON-Codable-Generator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -501,7 +504,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sentulasia.JSON-Codable-Generator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -521,7 +524,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sentulasia.JSON-Codable-GeneratorTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JSON Codable Generator.app/Contents/MacOS/JSON Codable Generator";
 			};
 			name = Debug;
@@ -542,7 +545,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sentulasia.JSON-Codable-GeneratorTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JSON Codable Generator.app/Contents/MacOS/JSON Codable Generator";
 			};
 			name = Release;
@@ -562,7 +565,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sentulasia.JSON-Codable-GeneratorUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = "JSON Codable Generator";
 			};
 			name = Debug;
@@ -582,7 +585,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sentulasia.JSON-Codable-GeneratorUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = "JSON Codable Generator";
 			};
 			name = Release;
