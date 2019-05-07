@@ -17,21 +17,7 @@ struct CodableGenerator {
     
     mutating func generate(fromInput input: [String: Any], withName name: String) -> String {
         codables = []
-        var output = ""
-        output += "//\n"
-        output += "//  " + name.removeSpace + ".swift\n"
-        output += "//  <Your App Name>\n"
-        output += "//\n"
-        output += "//  Created by <Your Name>\n"
-        output += "//  Copyright © 2019 <Your Name>. All rights reserved.\n"
-        output += "//\n"
-        output += "\n"
-        output += "\n"
-        output += "//  Usage:\n"
-        output += "//\n"
-        output += "//  let " + name.camelCase + " = try? JSONDecoder().decode(" + name.removeSpace + ".self, from: jsonData)\n"
-        output += "//  let jsonData = try? JSONEncoder().encode(" + name.camelCase + ")\n\n"
-        output += "import Foundation\n\n"
+        var output = generateHeader(forName: name, isArray: false)
         codables.append(generateCodable(fromInput: input, withName: name))
         for codable in codables.reversed() {
             output += codable
@@ -42,21 +28,7 @@ struct CodableGenerator {
     
     mutating func generate(fromArrayInput input: [[String: Any]], withName name: String) -> String {
         codables = []
-        var output = ""
-        output += "//\n"
-        output += "//  " + name.removeSpace + ".swift\n"
-        output += "//  <Your App Name>\n"
-        output += "//\n"
-        output += "//  Created by <Your Name>\n"
-        output += "//  Copyright © 2019 <Your Name>. All rights reserved.\n"
-        output += "//\n"
-        output += "\n"
-        output += "\n"
-        output += "//  Usage:\n"
-        output += "//\n"
-        output += "//  let " + name.camelCase + " = try? JSONDecoder().decode([" + name.removeSpace + "].self, from: jsonData)\n"
-        output += "//  let jsonData = try? JSONEncoder().encode(" + name.camelCase + ")\n\n"
-        output += "import Foundation\n\n"
+        var output = generateHeader(forName: name, isArray: true)
         codables.append(generateCodable(fromInput: input.first!, withName: name))
         for codable in codables.reversed() {
             output += codable
@@ -85,6 +57,29 @@ fileprivate extension String {
 }
 
 private extension CodableGenerator {
+    mutating func generateHeader(forName name: String, isArray flag: Bool) -> String {
+        var output = ""
+        output += "//\n"
+        output += "//  " + name.removeSpace + ".swift\n"
+        output += "//  <Your App Name>\n"
+        output += "//\n"
+        output += "//  Created by <Your Name>\n"
+        output += "//  Copyright © 2019 <Your Name>. All rights reserved.\n"
+        output += "//\n"
+        output += "\n"
+        output += "\n"
+        output += "//  Usage:\n"
+        output += "//\n"
+        if flag {
+            output += "//  let " + name.camelCase + " = try? JSONDecoder().decode([" + name.removeSpace + "].self, from: jsonData)\n"
+        } else {
+            output += "//  let " + name.camelCase + " = try? JSONDecoder().decode(" + name.removeSpace + ".self, from: jsonData)\n"
+        }
+        output += "//  let jsonData = try? JSONEncoder().encode(" + name.camelCase + ")\n\n"
+        output += "import Foundation\n\n"
+        return output
+    }
+    
     mutating func generateCodable(fromInput input: [String: Any], withName name: String) -> String {
         var output = ""
         output += "struct " + name.removeSpace + ": Codable {\n\n"
