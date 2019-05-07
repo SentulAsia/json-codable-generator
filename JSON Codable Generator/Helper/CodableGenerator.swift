@@ -39,6 +39,31 @@ struct CodableGenerator {
         }
         return output
     }
+    
+    mutating func generate(fromArrayInput input: [[String: Any]], withName name: String) -> String {
+        codables = []
+        var output = ""
+        output += "//\n"
+        output += "//  " + name.removeSpace + ".swift\n"
+        output += "//  <Your App Name>\n"
+        output += "//\n"
+        output += "//  Created by <Your Name>\n"
+        output += "//  Copyright © 2019 <Your Name>. All rights reserved.\n"
+        output += "//\n"
+        output += "\n"
+        output += "\n"
+        output += "//  Usage:\n"
+        output += "//\n"
+        output += "//  let " + name.camelCase + " = try? JSONDecoder().decode([" + name.removeSpace + "].self, from: jsonData)\n"
+        output += "//  let jsonData = try? JSONEncoder().encode(" + name.camelCase + ")\n\n"
+        output += "import Foundation\n\n"
+        codables.append(generateCodable(fromInput: input.first!, withName: name))
+        for codable in codables.reversed() {
+            output += codable
+            output += "\n\n"
+        }
+        return output
+    }
 }
 
 fileprivate extension String {
@@ -87,10 +112,10 @@ private extension CodableGenerator {
         if let codableArray = input.value as? [[String: Any]] {
             codables.append(generateCodable(fromInput: codableArray.first!, withName: input.key.removeUnderscore.capitalized))
             output += "    let " + name + ": [" + generateCodableName(fromString: input.key) + "]?\n"
-        } else if let _ = input.value as? [Double] {
-            output += "    let " + name + ": [Decimal]?\n"
         } else if let _ = input.value as? [Int] {
             output += "    let " + name + ": [Int]?\n"
+        } else if let _ = input.value as? [Double] {
+            output += "    let " + name + ": [Decimal]?\n"
         } else if let stringArray = input.value as? [String] {
             if let url = URL(string: stringArray.first!), let _ = try? url.checkResourceIsReachable() {
                 output += "    let " + name + ": [URL]?\n"
@@ -100,10 +125,10 @@ private extension CodableGenerator {
         } else if let codable = input.value as? [String: Any] {
             codables.append(generateCodable(fromInput: codable, withName: input.key.removeUnderscore.capitalized))
             output += "    let " + name + ": " + generateCodableName(fromString: input.key) + "?\n"
-        } else if let _ = input.value as? Double {
-            output += "    let " + name + ": Decimal?\n"
         } else if let _ = input.value as? Int {
             output += "    let " + name + ": Int?\n"
+        } else if let _ = input.value as? Double {
+            output += "    let " + name + ": Decimal?\n"
         } else if let string = input.value as? String {
             if let url = URL(string: string), let _ = try? url.checkResourceIsReachable() {
                 output += "    let " + name + ": URL?\n"
@@ -157,18 +182,18 @@ private extension CodableGenerator {
             output += "                " + name + "?.append(" + generateCodableName(fromString: input.key) + "(from: dic))\n"
             output += "            }\n"
             output += "        }\n"
-        } else if let _ = input.value as? [Double] {
-            output += "        " + name + " = [Decimal]()\n"
-            output += "        if let " + name + "Array = dictionary[keys." + name + ".rawValue] as? [NSNumber] {\n"
-            output += "            for dic in " + name + "Array {\n"
-            output += "                " + name + "?.append(dic.decimalValue)\n"
-            output += "            }\n"
-            output += "        }\n"
         } else if let _ = input.value as? [Int] {
             output += "        " + name + " = [Int]()\n"
             output += "        if let " + name + "Array = dictionary[keys." + name + ".rawValue] as? [Int] {\n"
             output += "            for dic in " + name + "Array {\n"
             output += "                " + name + "?.append(dic)\n"
+            output += "            }\n"
+            output += "        }\n"
+        } else if let _ = input.value as? [Double] {
+            output += "        " + name + " = [Decimal]()\n"
+            output += "        if let " + name + "Array = dictionary[keys." + name + ".rawValue] as? [NSNumber] {\n"
+            output += "            for dic in " + name + "Array {\n"
+            output += "                " + name + "?.append(dic.decimalValue)\n"
             output += "            }\n"
             output += "        }\n"
         } else if let stringArray = input.value as? [String] {
@@ -195,10 +220,10 @@ private extension CodableGenerator {
             output += "        } else {\n"
             output += "            " + name + " = nil\n"
             output += "        }\n"
-        } else if let _ = input.value as? Double {
-            output += "        " + name + " = (dictionary[keys." + name + ".rawValue] as? NSNumber)?.decimalValue\n"
         } else if let _ = input.value as? Int {
             output += "        " + name + " = dictionary[keys." + name + ".rawValue] as? Int\n"
+        } else if let _ = input.value as? Double {
+            output += "        " + name + " = (dictionary[keys." + name + ".rawValue] as? NSNumber)?.decimalValue\n"
         } else if let string = input.value as? String {
             if let url = URL(string: string), let _ = try? url.checkResourceIsReachable() {
                 output += "        " + name + " = dictionary[keys." + name + ".rawValue] as? URL\n"
@@ -224,10 +249,10 @@ private extension CodableGenerator {
         let name = generateVariableName(fromString: input.key)
         if let _ = input.value as? [[String: Any]] {
             output += "        " + name + " = try values.decodeIfPresent([" + generateCodableName(fromString: input.key) + "].self, forKey: ." + name + ")\n"
-        } else if let _ = input.value as? [Double] {
-            output += "        " + name + " = try values.decodeIfPresent([Decimal].self, forKey: ." + name + ")\n"
         } else if let _ = input.value as? [Int] {
             output += "        " + name + " = try values.decodeIfPresent([Int].self, forKey: ." + name + ")\n"
+        } else if let _ = input.value as? [Double] {
+            output += "        " + name + " = try values.decodeIfPresent([Decimal].self, forKey: ." + name + ")\n"
         } else if let stringArray = input.value as? [String] {
             if let url = URL(string: stringArray.first!), let _ = try? url.checkResourceIsReachable() {
                 output += "        " + name + " = try values.decodeIfPresent([URL].self, forKey: ." + name + ")\n"
@@ -236,10 +261,10 @@ private extension CodableGenerator {
             }
         } else if let _ = input.value as? [String: Any] {
             output += "        " + name + " = try values.decodeIfPresent(" + generateCodableName(fromString: input.key) + ".self, forKey: ." + name + ")\n"
-        } else if let _ = input.value as? Double {
-            output += "        " + name + " = try values.decodeIfPresent(Decimal.self, forKey: ." + name + ")\n"
         } else if let _ = input.value as? Int {
             output += "        " + name + " = try values.decodeIfPresent(Int.self, forKey: ." + name + ")\n"
+        } else if let _ = input.value as? Double {
+            output += "        " + name + " = try values.decodeIfPresent(Decimal.self, forKey: ." + name + ")\n"
         } else if let string = input.value as? String {
             if let url = URL(string: string), let _ = try? url.checkResourceIsReachable() {
                 output += "        " + name + " = try values.decodeIfPresent(URL.self, forKey: ." + name + ")\n"

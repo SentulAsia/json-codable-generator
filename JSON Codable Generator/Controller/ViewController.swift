@@ -85,8 +85,13 @@ extension ViewController {
     }
     
     func decode(string: String) -> String {
-        if let data = string.data(using: .utf8), let response = try? JSONSerialization.jsonObject(with: data, options: []), let r = response as? [String: Any] {
-            return printCodable(response: r)
+        if let data = string.data(using: .utf8), let response = try? JSONSerialization.jsonObject(with: data, options: []) {
+            if let r = response as? [[String: Any]] {
+                return printArrayCodable(response: r)
+            } else if let r = response as? [String: Any] {
+                return printCodable(response: r)
+            }
+            return "invalid JSON"
         }
         return "invalid JSON"
     }
@@ -97,6 +102,14 @@ extension ViewController {
             name = "ModelName"
         }
         return CodableGenerator.shared.generate(fromInput: response, withName: name)
+    }
+    
+    func printArrayCodable(response: [[String: Any]]) -> String {
+        var name = nameTextField.stringValue
+        if name.isEmpty {
+            name = "ModelName"
+        }
+        return CodableGenerator.shared.generate(fromArrayInput: response, withName: name)
     }
 }
 
